@@ -21,11 +21,55 @@ import { Button } from "../components/ui/button1";
 import kakao from "../assets/kakao.png";
 import naver from "../assets/naver.png";
 
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 function Payment() {
   const [paymentMethod, setPaymentMethod] = useState(null);
+  const productPrice = 50000; // 상품 가격
   const [selectedCard, setSelectedCard] = useState(null);
   const [installment, setInstallment] = useState(null);
-  const productPrice = 50000; // 상품 가격을 50,000원으로 가정
+  const history = useNavigate();
+
+  const handlePayment = async () => {
+    if (paymentMethod === "kakaopay") {
+      try {
+        const params = {
+          cid: "TC0ONETIME",
+          partner_order_id: "partner_order_id",
+          partner_user_id: "partner_user_id",
+          item_name: "상품명",
+          quantity: 1,
+          total_amount: productPrice,
+          vat_amount: Math.round(productPrice * 0.1),
+          tax_free_amount: 0,
+          approval_url: "http://localhost:3000/chat",
+          fail_url: "http://localhost:3000/chat",
+          cancel_url: "http://localhost:3000/chat",
+        };
+
+        // 카카오페이 결제 요청
+        const response = await axios({
+          url: "https://kapi.kakao.com/v1/payment/ready",
+          method: "POST",
+          headers: {
+            Authorization: "KakaoAK 87f6b7f24780d1278eb25a068a52c63b", // 앱 키 설정 필요
+            "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+          },
+          params,
+        });
+
+        const { next_redirect_pc_url, tid } = response.data;
+        window.localStorage.setItem("tid", tid); // 결제 승인 시 사용할 tid 저장
+        window.location.href = next_redirect_pc_url; // 결제 페이지로 리디렉션
+      } catch (error) {
+        console.error("결제 요청 중 오류 발생:", error);
+        alert("결제 처리 중 오류가 발생했습니다.");
+      }
+    } else {
+      alert("카카오페이 결제만 지원합니다.");
+    }
+  };
 
   return (
     <div>
@@ -160,10 +204,7 @@ function Payment() {
 
                     <Button
                       className="w-full bg-customOrange hover:bg-[#FE6150] text-white"
-                      onClick={() =>
-                        (window.location.href =
-                          "https://link.kakaopay.com/_/kYs0Dih")
-                      }
+                      onClick={handlePayment}
                     >
                       {productPrice.toLocaleString()}원 결제하기
                     </Button>
