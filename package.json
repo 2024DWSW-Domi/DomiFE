@@ -36,6 +36,9 @@
         "predeploy": "CI= npm run build",
         "deploy": "gh-pages -d build"
     },
+    "engines": {
+        "node": ">=16"
+    },
     "browserslist": {
         "production": [
             ">0.2%",
@@ -66,19 +69,8 @@
             }
         ]
     },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
     "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "autoprefixer": "^10.4.20",
         "css-loader": "^7.1.2",
         "postcss": "^8.4.47",
