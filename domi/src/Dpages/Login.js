@@ -9,8 +9,7 @@ import logo from "../assets/domititle.png";
 import naver from "../assets/navericon.png";
 import kakao from "../assets/kakaoicon.png";
 
-import "../doyeon.css";
-
+import "./Doyeon.css";
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;

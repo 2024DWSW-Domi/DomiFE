@@ -21,8 +21,6 @@ import chat from "../assets/chat.png";
 import user from "../assets/user.png";
 import postingdomi from "../assets/postingdomi.png";
 
-import "../doyeon.css";
-
 function Mainpage() {
   const [likedItems, setLikedItems] = useState(Array(10).fill(false)); // 각 카드의 좋아요 상태를 추적하는 배열
 

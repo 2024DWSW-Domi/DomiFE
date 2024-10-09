@@ -13,8 +13,6 @@ import { Button } from "../components/ui/button1";
 import kakao from "../assets/kakao.png";
 import naver from "../assets/naver.png";
 
-import "../doyeon.css";
-
 function Payment() {
   const [paymentMethod, setPaymentMethod] = useState(null);
   const productPrice = 50000; // 상품 가격을 50,000원으로 가정

@@ -1,7 +1,6 @@
 import react from "react";
 import * as C from "../styles/CommonStyle";
 import * as R from "../styles/RatingStyle";
-import "../doyeon.css";
 
 import { useState } from "react";
 import {
