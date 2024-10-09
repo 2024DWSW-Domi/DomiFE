@@ -13,6 +13,8 @@ import { Button } from "../components/ui/button1";
 import kakao from "../assets/kakao.png";
 import naver from "../assets/naver.png";
 
+import "../doyeon.css";
+
 function Payment() {
   const [paymentMethod, setPaymentMethod] = useState(null);
   const productPrice = 50000; // 상품 가격을 50,000원으로 가정
@@ -47,7 +49,7 @@ function Payment() {
                       <div className="w-20 h-20 bg-gray-200 rounded-md mr-4"></div>
                       <div>
                         <h4 className="font-bold text-m">상품명</h4>
-                        <p className="text-sm text-gray-600">판매자 닉네임</p>
+                        <p className="text-xs text-gray-600">닉네임</p>
                         <p className="font-semibold mt-2">
                           {productPrice.toLocaleString()}원
                         </p>
@@ -59,7 +61,7 @@ function Payment() {
                     <h3 className="text-lg font-semibold mb-2">결제 방식</h3>
                     <RadioGroup
                       onValueChange={setPaymentMethod}
-                      className="flex space-x-2"
+                      className="flex space-x-2 flex outline-none justify-center items-center space-x-2"
                     >
                       <div>
                         <RadioGroupItem

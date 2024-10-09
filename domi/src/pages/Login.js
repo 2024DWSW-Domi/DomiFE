@@ -9,6 +9,8 @@ import logo from "../assets/domititle.png";
 import naver from "../assets/navericon.png";
 import kakao from "../assets/kakaoicon.png";
 
+import "../doyeon.css";
+
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,7 +33,8 @@ const Input = styled.input`
   margin-bottom: 1rem;
   border: 1px solid #e2e8f0;
   border-radius: 9999px;
-  font-size: 0.875rem;
+  font-size: 12px;
+  padding: 10px;
 `;
 
 const Button = styled.button`
@@ -40,11 +43,12 @@ const Button = styled.button`
   margin-bottom: 1rem;
   border: none;
   border-radius: 9999px;
-  font-size: 0.875rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 12px;
+  padding: 10px;
 
   ${(props) =>
     props.primary &&
@@ -105,7 +109,7 @@ function Login() {
                       marginRight: "0.5rem",
                     }}
                   />
-                  네이버로 로그인하기
+                  네이버계정으로 로그인하기
                 </Button>
 
                 <SignUpText>
