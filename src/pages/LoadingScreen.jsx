@@ -33,6 +33,9 @@ function LoadingScreen() {
                                 alt="Logo Text"
                                 className="animate__animated animate__swing animate__slow animate__infinite"
                             />
+                            <Logologogogo>
+                                기숙사 비대면 거래 도우미, 도미
+                            </Logologogogo>
                         </div>
                     </ImageContainer>
                 </C.PageSpace>
@@ -67,4 +70,14 @@ const TextImage = styled.img`
     width: 60%;
     z-index: 1;
 }
+`;
+
+const Logologogogo = styled.div`
+    position: absolute;
+    top: 134%;
+    right: -34%;
+    width: 100%;
+    z-index: 2;
+    font-size: 11px;
+    color: #909090;
 `;
