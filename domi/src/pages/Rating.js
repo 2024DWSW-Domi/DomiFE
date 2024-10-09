@@ -1,6 +1,7 @@
 import react from "react";
 import * as C from "../styles/CommonStyle";
 import * as R from "../styles/RatingStyle";
+import "../doyeon.css";
 
 import { useState } from "react";
 import {
@@ -14,23 +15,42 @@ import {
   Sun,
   Utensils,
   DollarSign,
+  CircleCheckBig,
 } from "lucide-react";
 import { Button } from "../components/ui/button1";
 
 const likeOptions = [
-  { icon: <Coffee className="w-5 h-5" />, text: "분위기가 좋아요" },
-  { icon: <Smile className="w-5 h-5" />, text: "친절해요" },
-  { icon: <Utensils className="w-5 h-5" />, text: "음식이 맛있어요" },
-  { icon: <Star className="w-5 h-5" />, text: "서비스가 좋아요" },
-  { icon: <DollarSign className="w-5 h-5" />, text: "가격이 합리적이에요" },
+  {
+    icon: <CircleCheckBig className="w-5 h-5" />,
+    text: "친절하고 매너가 좋아요",
+  },
+  {
+    icon: <CircleCheckBig className="w-5 h-5" />,
+    text: "시간 약속을 잘 지켜요",
+  },
+  { icon: <CircleCheckBig className="w-5 h-5" />, text: "응답이 빨라요" },
+  {
+    icon: <CircleCheckBig className="w-5 h-5" />,
+    text: "물품 상태가 설명과 같아요",
+  },
+  { icon: <CircleCheckBig className="w-5 h-5" />, text: "가격이 합리적이에요" },
 ];
 
 const dislikeOptions = [
-  { icon: <Coffee className="w-5 h-5" />, text: "분위기가 아쉬워요" },
-  { icon: <Smile className="w-5 h-5" />, text: "불친절해요" },
-  { icon: <Utensils className="w-5 h-5" />, text: "음식이 별로예요" },
-  { icon: <Star className="w-5 h-5" />, text: "서비스가 아쉬워요" },
-  { icon: <DollarSign className="w-5 h-5" />, text: "가격이 비싸요" },
+  {
+    icon: <CircleCheckBig className="w-5 h-5" />,
+    text: "불친절하고 매너가 부족해요",
+  },
+  {
+    icon: <CircleCheckBig className="w-5 h-5" />,
+    text: "시간 약속을 지키지 않아요",
+  },
+  { icon: <CircleCheckBig className="w-5 h-5" />, text: "응답이 너무 늦어요" },
+  {
+    icon: <CircleCheckBig className="w-5 h-5" />,
+    text: "물품 상태가 설명과 달라요",
+  },
+  { icon: <CircleCheckBig className="w-5 h-5" />, text: "가격이 비싸요" },
 ];
 
 function Rating() {
@@ -94,15 +114,11 @@ function Rating() {
         <C.Center>
           <C.PageSpace>
             <R.Ratingpage>
-              <div className="max-w-md mx-auto p-8 space-y-8">
-                <Button variant="ghost" className="p-0">
-                  <ArrowLeft className="w-6 h-6" />
-                </Button>
-
+              <div className="max-w-md mx-auto p-10 space-y-8">
                 <div className="text-center space-y-2">
-                  <h1 className="text-xl font-semibold">
+                  <p className="text-lg font-semibold">
                     남기고 싶은 평가를 선택해주세요.
-                  </h1>
+                  </p>
                   <p className="text-sm text-muted-foreground">
                     필수로 1개 이상 선택해야 해요.
                   </p>
@@ -127,7 +143,7 @@ function Rating() {
                           >
                             {option.icon}
                           </span>
-                          <span>{option.text}</span>
+                          <span className="text-sm">{option.text}</span>
                         </button>
                       ))}
                     </div>
@@ -141,7 +157,7 @@ function Rating() {
                           className="w-full text-right py-2 px-3 rounded-lg transition-colors duration-200 flex items-center justify-end space-x-2 hover:bg-gray-100"
                           onClick={() => toggleOption(option.text, false)}
                         >
-                          <span>{option.text}</span>
+                          <span className="text-sm">{option.text}</span>
                           <span
                             className={
                               selectedDislikes.includes(option.text)

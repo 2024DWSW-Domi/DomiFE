@@ -14,8 +14,43 @@ import { Home, Users, MessageCircle, User, Heart, Search } from "lucide-react";
 import styled from "styled-components";
 
 import logo from "../assets/domititle.png";
+import HeartFill from "../assets/heart.png";
+import bucket from "../assets/bucket.png";
+import fishing from "../assets/fishing.png";
+import chat from "../assets/chat.png";
+import user from "../assets/user.png";
+import postingdomi from "../assets/postingdomi.png";
+
+import "../doyeon.css";
 
 function Mainpage() {
+  const [likedItems, setLikedItems] = useState(Array(10).fill(false)); // 각 카드의 좋아요 상태를 추적하는 배열
+
+  const toggleLike = (index) => {
+    const updatedLikes = [...likedItems];
+    updatedLikes[index] = !updatedLikes[index];
+    setLikedItems(updatedLikes);
+  };
+  const FloatingButton = styled.button`
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 10;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      right: calc(50% - 180px + 20px);
+    }
+  `;
+
   return (
     <C.Page>
       <C.Center>
@@ -64,18 +99,30 @@ function Mainpage() {
                                 상품 {i + 1}
                               </h3>
                               <p className="text-xs text-gray-500">
-                                ₩{(10000 * (i + 1)).toLocaleString()}
+                                {(10000 * (i + 1)).toLocaleString()}원
                               </p>
                               <p className="text-xs text-gray-400">
-                                판매자: user{i + 1}
+                                user{i + 1}
                               </p>
                             </div>
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="text-gray-500 hover:text-red-500"
+                              className="text-gray-500 hover:bg-white"
+                              onClick={(e) => {
+                                e.stopPropagation(); // 카드 클릭 이벤트와 분리
+                                toggleLike(i); // 좋아요 상태 토글
+                              }}
                             >
-                              <Heart className="h-4 w-4" />
+                              {likedItems[i] ? (
+                                <img
+                                  src={HeartFill}
+                                  alt="heart"
+                                  className="h-4 w-4 text-red-500"
+                                /> // 채워진 하트
+                              ) : (
+                                <Heart className="h-4 w-4" /> // 빈 하트
+                              )}
                             </Button>
                           </div>
                         </CardContent>
@@ -85,7 +132,7 @@ function Mainpage() {
                 </div>
               </MP.MainContainer>
 
-              <nav className="bg-gray-100 rounded-3xl">
+              <nav className="bg-gray-100 rounded-3xl m-3">
                 <div className="flex justify-around p-2">
                   <Button
                     variant="ghost"
@@ -93,15 +140,17 @@ function Mainpage() {
                     className="flex flex-col items-center"
                     onClick={() => (window.location.href = "/")}
                   >
-                    <Home className="h-5 w-5" />
-                    <span className="text-xs">홈</span>
+                    <img src={fishing} alt="fishing" className="h-6 w-6" />
+                    <span className="text-xs font-bold text-moreOrange">
+                      홈
+                    </span>
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
                     className="flex flex-col items-center"
                   >
-                    <Users className="h-5 w-5" />
+                    <img src={bucket} alt="bucket" className="h-6 w-6" />
                     <span className="text-xs">커뮤니티</span>
                   </Button>
                   <Button
@@ -110,7 +159,7 @@ function Mainpage() {
                     className="flex flex-col items-center"
                     onClick={() => (window.location.href = "/chat")}
                   >
-                    <MessageCircle className="h-5 w-5" />
+                    <img src={chat} alt="" className="h-5 w-5" />
                     <span className="text-xs">채팅</span>
                   </Button>
                   <Button
@@ -118,11 +167,21 @@ function Mainpage() {
                     size="sm"
                     className="flex flex-col items-center"
                   >
-                    <User className="h-5 w-5" />
+                    <img src={user} alt="" className="h-5 w-5" />
                     <span className="text-xs">마이페이지</span>
                   </Button>
                 </div>
               </nav>
+
+              <FloatingButton
+                onClick={() => (window.location.href = "/posting")}
+              >
+                <img
+                  src={postingdomi}
+                  alt="상품 등록"
+                  style={{ width: "100px", height: "70px" }}
+                />
+              </FloatingButton>
             </div>
           </MP.Mainpage>
         </C.PageSpace>
