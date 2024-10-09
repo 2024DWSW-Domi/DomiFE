@@ -7,6 +7,14 @@ import { CreditCard, X } from "lucide-react";
 import { Card, CardContent } from "../components/ui/card";
 import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
 import { Label } from "../components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/select";
+
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button1";
 
@@ -15,6 +23,8 @@ import naver from "../assets/naver.png";
 
 function Payment() {
   const [paymentMethod, setPaymentMethod] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [installment, setInstallment] = useState(null);
   const productPrice = 50000; // 상품 가격을 50,000원으로 가정
 
   return (
@@ -63,16 +73,16 @@ function Payment() {
                     >
                       <div>
                         <RadioGroupItem
-                          value="account"
-                          id="account"
+                          value="card"
+                          id="card"
                           className="peer sr-only"
                         />
                         <Label
-                          htmlFor="account"
-                          className="flex flex-col items-center justify-center rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-customOrange [&:has([data-state=checked])]:border-customOrange"
+                          htmlFor="card"
+                          className="flex flex-col items-center justify-center rounded-md border-2 border-muted bg-popover p-3 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                         >
-                          <CreditCard size={20} className="mb-2" />
-                          <p className="text-xs">계좌이체</p>
+                          <CreditCard className="mb-1 w-5 h-5" />
+                          카드 결제
                         </Label>
                       </div>
                       <div>
@@ -109,13 +119,36 @@ function Payment() {
                     </RadioGroup>
                   </div>
 
-                  {paymentMethod === "account" && (
-                    <div className="mb-6">
-                      <p className="mb-2 font-semibold">
-                        아래 계좌로 입금해주세요!
+                  {paymentMethod === "card" && (
+                    <div className="mb-6 space-y-4">
+                      <p className="font-semibold">
+                        결제할 카드를 선택해주세요.
                       </p>
-                      <Input className="mb-2" placeholder="신한은행" readOnly />
-                      <Input placeholder="1010101011010" readOnly />
+                      <Select onValueChange={setSelectedCard}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="카드 선택" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="samsung">삼성카드</SelectItem>
+                          <SelectItem value="bc">비씨카드</SelectItem>
+                          <SelectItem value="kb">국민카드</SelectItem>
+                          <SelectItem value="shinhan">신한카드</SelectItem>
+                          <SelectItem value="hyundai">현대카드</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <Select onValueChange={setInstallment}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="일시불 및 할부 선택" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="0">일시불</SelectItem>
+                          <SelectItem value="2">2개월</SelectItem>
+                          <SelectItem value="3">3개월</SelectItem>
+                          <SelectItem value="4">4개월</SelectItem>
+                          <SelectItem value="5">5개월</SelectItem>
+                          <SelectItem value="6">6개월</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   )}
 
