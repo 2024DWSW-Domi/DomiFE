@@ -42,7 +42,13 @@ function Mainpage() {
                 <div className="space-y-3">
                   <div className="space-y-3">
                     {[...Array(10)].map((_, i) => (
-                      <Card key={i} className="rounded-xl overflow-hidden">
+                      <Card
+                        key={i}
+                        className="rounded-xl overflow-hidden cursor-pointer"
+                        onClick={() =>
+                          (window.location.href = `/product/${i + 1}`)
+                        }
+                      >
                         <CardContent className="p-3">
                           <div className="flex items-center space-x-3">
                             <img
@@ -85,6 +91,7 @@ function Mainpage() {
                     variant="ghost"
                     size="sm"
                     className="flex flex-col items-center"
+                    onClick={() => (window.location.href = "/")}
                   >
                     <Home className="h-5 w-5" />
                     <span className="text-xs">홈</span>
@@ -101,6 +108,7 @@ function Mainpage() {
                     variant="ghost"
                     size="sm"
                     className="flex flex-col items-center"
+                    onClick={() => (window.location.href = "/chat")}
                   >
                     <MessageCircle className="h-5 w-5" />
                     <span className="text-xs">채팅</span>

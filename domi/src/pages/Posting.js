@@ -1,8 +1,50 @@
 import react, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as C from "../styles/CommonStyle";
 import * as PI from "../styles/PostingStyle";
 
 function Posting() {
+    // 네비게이션 훅
+    const navigate = useNavigate();
+
+    // 임시저장 버튼 클릭 시 호출
+    const handleSave = () => {
+        navigate("/"); // '/' 경로로 이동
+    };
+
+    // 등록하기 버튼 클릭 시 호출
+    const handleUpload = () => {
+        navigate("/posted"); // '/posted' 경로로 이동
+    };
+    //이미지 업로드
+    const [imagePreviews, setImagePreviews] = useState([]);
+
+    const handleImageUpload = (event) => {
+        const files = Array.from(event.target.files); // Get the selected files
+
+        if (files.length + imagePreviews.length > 10) {
+            alert("이미지는 최대 10장까지 업로드 가능합니다.");
+            return;
+        }
+
+        const newPreviews = files.map((file) => {
+            return URL.createObjectURL(file); // Create preview URLs
+        });
+
+        setImagePreviews((prev) => [...prev, ...newPreviews]); // Append new previews
+    };
+
+    //글자수
+    const [productName, setProductName] = useState(""); // To track input value
+
+    const handleInputChange = (event) => {
+        const value = event.target.value;
+        // Update state only if it's within the limit
+        if (value.length <= 40) {
+            setProductName(value);
+        }
+    };
+
     //카테고리 선택 박스
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -33,6 +75,31 @@ function Posting() {
         setSelectedCondition(conditionId); // Set the selected condition ID
         console.log("Selected condition:", conditionId); // You can pass this value as needed
     };
+    // 요일과 장소 선택 상태 관리
+    const [selectedDays, setSelectedDays] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState("");
+
+    const days = ["월", "화", "수", "목", "금", "토", "일"];
+    const locations = ["1관 로비 테이블", "2관 1층 테이블"];
+
+    // 요일 선택 처리
+    const toggleDay = (day) => {
+        if (selectedDays.includes(day)) {
+            setSelectedDays(selectedDays.filter((d) => d !== day)); // 선택 취소
+        } else {
+            setSelectedDays([...selectedDays, day]); // 선택
+        }
+    };
+
+    // 거래 장소 선택 처리
+    const selectLocation = (location) => {
+        if (selectedLocation === location) {
+            setSelectedLocation(""); // 선택 취소
+        } else {
+            setSelectedLocation(location); // 선택
+        }
+    };
+
     return (
         <C.Page>
             <C.Center>
@@ -49,7 +116,44 @@ function Posting() {
                                         상품이미지
                                     </div>
                                     <div className="postedupload">
-                                        <input type="file" accept="image/*" />
+                                        <div className="image-preview-container">
+                                            {imagePreviews.map(
+                                                (image, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="image-preview"
+                                                    >
+                                                        <img
+                                                            src={image}
+                                                            alt={`미리보기 이미지 ${
+                                                                index + 1
+                                                            }`}
+                                                            style={{
+                                                                maxWidth:
+                                                                    "150px",
+                                                                maxHeight:
+                                                                    "70px",
+                                                                marginTop:
+                                                                    "10px",
+                                                                marginRight:
+                                                                    "10px",
+                                                            }}
+                                                        />
+                                                    </div>
+                                                )
+                                            )}
+                                        </div>
+                                        <label className="custom-file-upload">
+                                            이미지 업로드
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={handleImageUpload}
+                                                disabled={
+                                                    imagePreviews.length >= 10
+                                                }
+                                            />
+                                        </label>
                                     </div>
                                 </div>
                                 <div className="postedtocategolry">
@@ -59,51 +163,68 @@ function Posting() {
                                         </div>
                                         <div className="postednametype">
                                             <div className="postednametypingbox">
-                                                <input placeholder="상품명을 입력해주세요"></input>
+                                                <input
+                                                    placeholder="상품명을 입력해주세요"
+                                                    class="postedinput"
+                                                    onChange={handleInputChange}
+                                                    maxLength={40} // Limit the input to 40 characters
+                                                ></input>
                                             </div>
                                             <div className="postenamelimit">
-                                                0/40
+                                                {productName.length}/40
                                             </div>
                                         </div>
                                         <div className="postedcategolryselectionbox">
                                             <div className="postedcategolryselectionboxtxt">
                                                 카테고리
                                             </div>
-                                            <div
-                                                className="postedcategolryselection"
-                                                onClick={handleCategoryClick}
-                                            >
-                                                {selectedCategory ||
-                                                    "카테고리 선택"}{" "}
+                                            <div className="postedcategolryselectionboxborder">
                                                 <div
-                                                    style={{
-                                                        cursor: "pointer",
-                                                    }}
+                                                    className="postedcategolryselection"
+                                                    onClick={
+                                                        handleCategoryClick
+                                                    }
                                                 >
-                                                    {isDropdownOpen ? "▲" : "▼"}
+                                                    <div>
+                                                        {selectedCategory ||
+                                                            "카테고리 선택"}{" "}
+                                                    </div>
+
+                                                    <div
+                                                        style={{
+                                                            cursor: "pointer",
+                                                        }}
+                                                    >
+                                                        {isDropdownOpen
+                                                            ? "▲"
+                                                            : "▼"}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {isDropdownOpen && (
-                                                <div className="categoryDropdown">
-                                                    {categories.map(
-                                                        (category) => (
-                                                            <div
-                                                                key={category}
-                                                                onClick={() =>
-                                                                    handleCategorySelect(
+
+                                                {isDropdownOpen && (
+                                                    <div className="categoryDropdown">
+                                                        {categories.map(
+                                                            (category) => (
+                                                                <div
+                                                                    key={
                                                                         category
-                                                                    )
-                                                                }
-                                                                style={{
-                                                                    cursor: "pointer",
-                                                                }}
-                                                            >
-                                                                {category}
-                                                            </div>
-                                                        )
-                                                    )}
-                                                </div>
-                                            )}
+                                                                    }
+                                                                    onClick={() =>
+                                                                        handleCategorySelect(
+                                                                            category
+                                                                        )
+                                                                    }
+                                                                    style={{
+                                                                        cursor: "pointer",
+                                                                    }}
+                                                                >
+                                                                    {category}
+                                                                </div>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -141,6 +262,7 @@ function Posting() {
                                             <textarea
                                                 placeholder="브랜드, 모델명, 구매 시기, 하자 유무 등 상품 설명을 최대한 자세히 적어주세요.
 전화번호, SNS 계정 등 개인정보 입력은 제한될 수 있어요."
+                                                class="postedtextarea"
                                             ></textarea>
                                         </div>
                                     </div>
@@ -149,7 +271,10 @@ function Posting() {
                                             가격
                                         </div>
                                         <div className="postedconditioncostbox">
-                                            <input placeholder="가격을 입력해주세요"></input>
+                                            <input
+                                                placeholder="가격을 입력해주세요"
+                                                class="postedinput"
+                                            ></input>
                                         </div>
                                     </div>
                                 </div>
@@ -158,20 +283,78 @@ function Posting() {
                                         <div className="posteddatetxt">
                                             거래 희망 일자
                                         </div>
+                                        <div className="posteddate">
+                                            <div className="posteddaysbuttons">
+                                                {days.map((day) => (
+                                                    <button
+                                                        key={day}
+                                                        onClick={() =>
+                                                            toggleDay(day)
+                                                        }
+                                                        style={{
+                                                            backgroundColor:
+                                                                selectedDays.includes(
+                                                                    day
+                                                                )
+                                                                    ? "#FFACAC"
+                                                                    : "white",
+                                                            border: selectedDays.includes(
+                                                                day
+                                                            )
+                                                                ? "1px solid #FFACAC"
+                                                                : "1px solid #ccc",
+                                                        }}
+                                                    >
+                                                        {day}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="postedwhere">
                                         <div className="postedwheretxt">
                                             거래 가능 장소
                                         </div>
-                                        <div className="postedwherebox"></div>
+                                        <div className="postedwherebox">
+                                            {locations.map((location) => (
+                                                <button
+                                                    key={location}
+                                                    onClick={() =>
+                                                        selectLocation(location)
+                                                    }
+                                                    style={{
+                                                        backgroundColor:
+                                                            selectedLocation ===
+                                                            location
+                                                                ? "#FFACAC"
+                                                                : "white",
+
+                                                        border: selectedLocation.includes(
+                                                            location
+                                                        )
+                                                            ? "1px solid #FFACAC"
+                                                            : "1px solid #ccc",
+                                                    }}
+                                                >
+                                                    {location}
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
                                 </dic>
                             </div>
                         </PI.Postbox>
                         <PI.Postnextpage>
                             <div className="postednextpage">
-                                <button className="save">임시저장</button>
-                                <button className="upload">등록하기</button>
+                                <button className="save" onClick={handleSave}>
+                                    임시저장
+                                </button>
+                                <button
+                                    className="upload"
+                                    onClick={handleUpload}
+                                >
+                                    등록하기
+                                </button>
                             </div>
                         </PI.Postnextpage>
                     </PI.Posting>{" "}
