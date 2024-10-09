@@ -36,10 +36,34 @@
         "predeploy": "CI= npm run build",
         "deploy": "gh-pages -d build"
     },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
     "eslintConfig": {
         "extends": [
-            "react-app",
-            "react-app/jest"
+            "react-app"
+        ],
+        "rules": {
+            "no-unused-vars": "warn"
+        },
+        "overrides": [
+            {
+                "files": [
+                    "**/*.ts?(x)"
+                ],
+                "rules": {
+                    "max-len": "warn"
+                }
+            }
         ]
     },
     "browserslist": {
