@@ -21,8 +21,61 @@ import chat from "../assets/chat.png";
 import user from "../assets/user.png";
 import postingdomi from "../assets/postingdomi.png";
 
+import product1 from "../assets/product1.png";
+import product2 from "../assets/product2.png";
+import product3 from "../assets/product3.png";
+import product4 from "../assets/product4.png";
+import product5 from "../assets/product5.png";
+import product6 from "../assets/product6.png";
+import product7 from "../assets/product7.png";
+
 function Mainpage() {
-  const [likedItems, setLikedItems] = useState(Array(10).fill(false)); // 각 카드의 좋아요 상태를 추적하는 배열
+  const [likedItems, setLikedItems] = useState(Array(7).fill(false));
+
+  const items = [
+    {
+      name: "퍼퓸 샤쉐 방향제",
+      user: "코딩하는 덕우",
+      image: product1,
+      price: 10000,
+    },
+    {
+      name: "보조 배터리 팔아요",
+      user: "빨래하는 덕새",
+      image: product2,
+      price: 20000,
+    },
+    {
+      name: "프로틴쉐이크 사세요",
+      user: "과자 먹는 복단이",
+      image: product3,
+      price: 30000,
+    },
+    {
+      name: "리 아이패드 파우치 새 거",
+      user: "도미 먹는 덕우",
+      image: product4,
+      price: 40000,
+    },
+    {
+      name: "치이카와 입양하세요",
+      user: "식빵 굽는 덕조",
+      image: product5,
+      price: 50000,
+    },
+    {
+      name: "록시땅 핸드크림 미스트",
+      user: "노래하는 희주",
+      image: product6,
+      price: 60000,
+    },
+    {
+      name: "접이식 빨래 건조대",
+      user: "까칠한 복단이",
+      image: product7,
+      price: 15000,
+    },
+  ];
 
   const toggleLike = (index) => {
     const updatedLikes = [...likedItems];
@@ -74,33 +127,29 @@ function Mainpage() {
               <MP.MainContainer>
                 <div className="space-y-3">
                   <div className="space-y-3">
-                    {[...Array(10)].map((_, i) => (
+                    {items.map((item, i) => (
                       <Card
                         key={i}
                         className="rounded-xl overflow-hidden cursor-pointer"
-                        onClick={() =>
-                          (window.location.href = `/product/${i + 1}`)
-                        }
+                        onClick={() => (window.location.href = `/posted`)}
                       >
                         <CardContent className="p-3">
                           <div className="flex items-center space-x-3">
                             <img
-                              src={`https://via.placeholder.com/60x60?text=상품${
-                                i + 1
-                              }`}
+                              src={item.image}
                               alt={`상품 ${i + 1}`}
                               style={{ width: "60px", height: "60px" }}
                               className="rounded-lg object-cover"
                             />
                             <div className="flex-1">
                               <h3 className="font-semibold text-base">
-                                상품 {i + 1}
+                                {item.name}
                               </h3>
                               <p className="text-xs text-gray-500">
-                                {(10000 * (i + 1)).toLocaleString()}원
+                                {item.price.toLocaleString()}원
                               </p>
                               <p className="text-xs text-gray-400">
-                                user{i + 1}
+                                {item.user}
                               </p>
                             </div>
                             <Button
