@@ -51,6 +51,7 @@ export const PostedPage = styled.div`
         width: 15px;
         height: 15px;
         margin-top: 1px;
+        margin-right: 2px;
     }
     .postedcost {
         display: flex;
@@ -100,7 +101,7 @@ export const PostedPay = styled.div`
         border-radius: 20px 20px 0 0;
         box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
         padding: 20px;
-        max-width: 360px;
+        max-width: 350px;
         animation: slideUp 0.4s ease forwards;
         z-index: 1000;
         box-sizing: content-box;
