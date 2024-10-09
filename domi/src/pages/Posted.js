@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as C from "../styles/CommonStyle";
 import * as PD from "../styles/PostedStyle";
 import sample from "../assets/sample.png";
 import backbtn from "../assets/backbtn.png";
+import logo from "../assets/domititle.png";
 
 // Slide Up Modal Component
 function SlideUpModal({ onClose }) {
@@ -104,6 +106,8 @@ function SlideUpModal({ onClose }) {
 }
 
 function Posted() {
+    // 네비게이션 훅
+    const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -120,9 +124,21 @@ function Posted() {
                 <C.PageSpace>
                     <PD.Posted>
                         <PD.PostedPage>
+                            <header>
+                                <img
+                                    src={logo}
+                                    alt="Logo"
+                                    style={{ width: "140px", height: "60px" }}
+                                    className="rounded mx-auto my-5"
+                                />
+                            </header>
                             <div className="postedbackbtn">
                                 <button>
-                                    <img src={backbtn} alt="Back" />
+                                    <img
+                                        src={backbtn}
+                                        alt="Back"
+                                        onClick={() => navigate(-1)}
+                                    />
                                 </button>
                             </div>
                             <div className="postedmainpage">
