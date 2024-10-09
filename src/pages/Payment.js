@@ -158,7 +158,13 @@ function Payment() {
                       동의해요.
                     </p>
 
-                    <Button className="w-full bg-customOrange hover:bg-[#FE6150] text-white">
+                    <Button
+                      className="w-full bg-customOrange hover:bg-[#FE6150] text-white"
+                      onClick={() =>
+                        (window.location.href =
+                          "https://link.kakaopay.com/_/kYs0Dih")
+                      }
+                    >
                       {productPrice.toLocaleString()}원 결제하기
                     </Button>
                   </div>
