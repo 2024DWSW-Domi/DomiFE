@@ -12,17 +12,14 @@
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
-
-        "axios": "^1.7.7",
-        "dotenv": "^16.4.5",
-        "express": "^4.21.1",
-
         "animate.css": "^4.1.1",
+        "axios": "^1.7.7",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "domi": "file:",
+        "dotenv": "^16.4.5",
+        "express": "^4.21.1",
         "lottie-react": "^2.4.0",
-
         "lucide-react": "^0.447.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
