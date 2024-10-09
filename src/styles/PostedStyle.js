@@ -91,7 +91,7 @@ export const PostedPay = styled.div`
         border-radius: 20px 20px 0 0;
         box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
         padding: 20px;
-        max-width: 320px;
+        max-width: 360px;
         animation: slideUp 0.4s ease forwards;
         z-index: 1000;
         box-sizing: content-box;
