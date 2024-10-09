@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Main from "./Dpages/Mainpage";
-import Login from "./Dpages/Login";
+import Main from "./pages/Mainpage";
+import Login from "./pages/Login";
 import Posted from "./pages/Posted";
 import Posting from "./pages/Posting";
 import Chat from "./pages/Chat";
-import Payment from "./Dpages/Payment";
-import Rating from "./Dpages/Rating";
+import Payment from "./pages/Payment";
+import Rating from "./pages/Rating";
 
 function App() {
   return (
