@@ -12,7 +12,7 @@ function LoadingScreen() {
     useEffect(() => {
         const timer = setTimeout(() => {
             navigate("/main");
-        }, 5000); // 시간 조정 가능
+        }, 5000000); // 시간 조정 가능
 
         return () => clearTimeout(timer);
     }, [navigate]);
@@ -57,7 +57,7 @@ const ImageContainer = styled.div`
 const FishImage = styled.img`
     position: absolute;
     top: 89%;
-    right: 32px;
+    right: 5%;
     width: 60%;
     z-index: 2;
 `;
@@ -65,17 +65,18 @@ const FishImage = styled.img`
 const TextImage = styled.img`
        position: absolute;
     top: 94%;
-    left: 30%;
+    left: 36%;
     transform: translate(-50%, -50%);
     width: 60%;
     z-index: 1;
+}
 }
 `;
 
 const Logologogogo = styled.div`
     position: absolute;
     top: 134%;
-    right: -34%;
+    right: -40%;
     width: 100%;
     z-index: 2;
     font-size: 11px;
