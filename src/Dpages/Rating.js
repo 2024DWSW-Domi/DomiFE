@@ -176,7 +176,7 @@ function Rating() {
                 <Button
                   className="w-full bg-customOrange hover:bg-moreOrange text-white transition-colors duration-200"
                   disabled={isSubmitDisabled}
-                  onClick={() => (window.location.href = `/`)}
+                  onClick={handleSubmit}
                 >
                   제출하기
                 </Button>
