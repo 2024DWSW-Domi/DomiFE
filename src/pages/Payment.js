@@ -23,10 +23,11 @@ import naver from "../assets/naver.png";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import sample from "../assets/product7.png";
 
 function Payment() {
   const [paymentMethod, setPaymentMethod] = useState(null);
-  const productPrice = 50000; // 상품 가격
+  const productPrice = 15000; // 상품 가격
   const [selectedCard, setSelectedCard] = useState(null);
   const [installment, setInstallment] = useState(null);
   const history = useNavigate();
@@ -43,9 +44,9 @@ function Payment() {
           total_amount: productPrice,
           vat_amount: Math.round(productPrice * 0.1),
           tax_free_amount: 0,
-          approval_url: "http://localhost:3000/chat",
-          fail_url: "http://localhost:3000/chat",
-          cancel_url: "http://localhost:3000/chat",
+          approval_url: "https://domi2024.netlify.app/chat",
+          fail_url: "https://domi2024.netlify.app/chat",
+          cancel_url: "https://domi2024.netlify.app/chat",
         };
 
         // 카카오페이 결제 요청
@@ -98,10 +99,13 @@ function Payment() {
 
                   <Card className="mb-6 border-customOrange">
                     <CardContent className="flex items-center p-4">
-                      <div className="w-20 h-20 bg-gray-200 rounded-md mr-4"></div>
+                      <img
+                        src={sample}
+                        className="w-20 h-20 bg-gray-200 rounded-md mr-4"
+                      />
                       <div>
-                        <h4 className="font-bold text-m">상품명</h4>
-                        <p className="text-xs text-gray-600">닉네임</p>
+                        <h4 className="font-bold text-m">접이식 빨래 건조대</h4>
+                        <p className="text-xs text-gray-600">까칠한 복단이</p>
                         <p className="font-semibold mt-2">
                           {productPrice.toLocaleString()}원
                         </p>
