@@ -40,8 +40,17 @@ export const PostedPage = styled.div`
     }
     .postedtitleinfowho,
     .postedtitleinfoloved {
-        font-size: 10px;
+        font-size: 12px;
         margin: 3px;
+    }
+    .postedtitleinfoloved {
+        display: flex;
+        align-items: center;
+    }
+    .hearimg {
+        width: 15px;
+        height: 15px;
+        margin-top: 1px;
     }
     .postedcost {
         display: flex;
