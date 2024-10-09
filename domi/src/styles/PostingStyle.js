@@ -29,7 +29,7 @@ export const Postbox = styled.div`
     .posteddatetxt,
     .postedwheretxt {
         font-size: 10px;
-        margin-top: 2%;
+        margin-top: 5%;
         margin-bottom: 2%;
     }
     .postedupload input {
@@ -140,6 +140,8 @@ export const Postbox = styled.div`
     .postedwherebox {
         display: flex;
         justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
     .postedwherebox button {
         background-color: white;
@@ -147,9 +149,68 @@ export const Postbox = styled.div`
         width: 90px;
         padding: 6px;
         font-size: 10px;
-        margin-left: 3px;
-        margin-bottom: 16px;
-        margin-top: 16px;
+        margin-left: 5px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+    .time-inputs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .time-slots {
+        margin-top: 10px;
+    }
+
+    .time-slot {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+    .time-slot button {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 3px 6px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    .time-inputs,
+    .time-slot {
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .timeplus,
+    .locationplus img {
+        width: 20px;
+    }
+    .postedtimebox {
+        margin: 7px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .postedconditioncostbox {
+        margin-bottom: 10px;
+    }
+    .location-inputs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-top: 6px;
+    }
+    .postedwhereinput {
+        border-radius: 5px;
+        border: 0.3px solid #d9d9d9;
+        width: 150px;
+        height: 25px;
+        font-size: 10px;
+        margin-right: 5px;
     }
 `;
 export const Postnextpage = styled.div`
