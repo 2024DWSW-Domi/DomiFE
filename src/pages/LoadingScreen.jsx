@@ -12,7 +12,7 @@ function LoadingScreen() {
     useEffect(() => {
         const timer = setTimeout(() => {
             navigate("/main");
-        }, 5000000); // 시간 조정 가능
+        }, 5000); // 시간 조정 가능
 
         return () => clearTimeout(timer);
     }, [navigate]);
@@ -76,7 +76,7 @@ const TextImage = styled.img`
 const Logologogogo = styled.div`
     position: absolute;
     top: 134%;
-    right: -40%;
+    right: -42%;
     width: 100%;
     z-index: 2;
     font-size: 11px;
