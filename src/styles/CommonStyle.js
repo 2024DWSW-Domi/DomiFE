@@ -14,7 +14,7 @@ export const Center = styled.div`
 
 export const PageSpace = styled.div`
     width: 100vw;
-    min-height: 100dvh;
+    min-height: 90dvh;
     /* background-color: white; */
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
         0 8px 10px -6px rgba(0, 0, 0, 0.3);
