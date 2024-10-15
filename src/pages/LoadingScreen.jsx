@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as C from "../styles/CommonStyle";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -8,14 +8,24 @@ import "animate.css";
 
 function LoadingScreen() {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+
+    // 여기서 데이터를 로딩하거나 다른 준비 작업을 처리
+    useEffect(() => {
+        const loadData = async () => {
+            // 데이터 로딩이나 준비 작업 수행
+            await new Promise((resolve) => setTimeout(resolve, 5000)); // 예시로 5초 지연
+            setLoading(false); // 로딩 완료 시 false로 설정
+        };
+
+        loadData();
+    }, []);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            navigate("/main");
-        }, 5000); // 시간 조정 가능
-
-        return () => clearTimeout(timer);
-    }, [navigate]);
+        if (!loading) {
+            navigate("/main"); // 로딩이 끝나면 main 페이지로 이동
+        }
+    }, [loading, navigate]);
 
     return (
         <C.Page>
@@ -63,14 +73,12 @@ const FishImage = styled.img`
 `;
 
 const TextImage = styled.img`
-       position: absolute;
+    position: absolute;
     top: 94%;
     left: 36%;
     transform: translate(-50%, -50%);
     width: 60%;
     z-index: 1;
-}
-}
 `;
 
 const Logologogogo = styled.div`
