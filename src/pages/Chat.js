@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import * as C from "../styles/CommonStyle";
 import * as CH from "../styles/ChatStyle";
 import { useNavigate } from "react-router-dom";
-import example from "../assets/product7.png";
+import example from "../assets/두루마리 휴지.jpg";
 import send from "../assets/Send.png";
 import sendcolor from "../assets/Sendcolor.png";
 import plus from "../assets/chatplus.png";
 import backbtn from "../assets/backbtn.png";
 import chatimg from "../assets/chatingimg.jpg";
 import chatimg2 from "../assets/chatingimg2.png";
+
 function Chat() {
     // 네비게이션 훅
     const navigate = useNavigate();
@@ -46,6 +47,20 @@ function Chat() {
 
         setMessages([...messages, newMessage]); // 새 메시지를 추가
         setInputMessage(""); // 입력창 비우기
+
+        // 1분 뒤에 자동으로 응답 메시지 추가
+        setTimeout(() => {
+            const autoReplyMessage = {
+                type: "received",
+                text: "안녕하세요! 물건 해당 자리에 두었습니다! 픽업 부탁드려요:)",
+                time: new Date().toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                }),
+            };
+            setMessages((prevMessages) => [...prevMessages, autoReplyMessage]);
+        }, 40000); // 1분 = 60초 = 60000 밀리초
     };
 
     // 구매 확정 버튼 클릭 시 메시지 전송 함수 (handleSendMessage 바깥으로 이동)
@@ -101,10 +116,10 @@ function Chat() {
                                         </div>
                                         <div className="productinfo">
                                             <div className="productname">
-                                                접이식 빨래 건조대
+                                                두루마리 휴지
                                             </div>
                                             <div className="productprice">
-                                                15,000 원
+                                                1,000 원
                                             </div>
                                         </div>
                                     </div>

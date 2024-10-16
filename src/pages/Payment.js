@@ -23,11 +23,11 @@ import naver from "../assets/naver.png";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import sample from "../assets/product7.png";
+import sample from "../assets/두루마리 휴지.jpg";
 
 function Payment() {
     const [paymentMethod, setPaymentMethod] = useState(null);
-    const productPrice = 15000; // 상품 가격
+    const productPrice = 1000; // 상품 가격
     const [selectedCard, setSelectedCard] = useState(null);
     const [installment, setInstallment] = useState(null);
     const history = useNavigate();
@@ -112,10 +112,10 @@ function Payment() {
                                             />
                                             <div>
                                                 <h4 className="font-bold text-m">
-                                                    접이식 빨래 건조대
+                                                    두루마리 휴지
                                                 </h4>
                                                 <p className="text-xs text-gray-600">
-                                                    까칠한 복단이
+                                                    까칠한 도미
                                                 </p>
                                                 <p className="font-semibold mt-2">
                                                     {productPrice.toLocaleString()}

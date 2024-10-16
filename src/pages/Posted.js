@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as C from "../styles/CommonStyle";
 import * as PD from "../styles/PostedStyle";
-import sample from "../assets/product7.png";
+import sample from "../assets/두루마리 휴지.jpg";
 import backbtn from "../assets/backbtn.png";
 import logo from "../assets/domititle.png";
 import heart from "../assets/heart.png";
@@ -158,7 +158,7 @@ function Posted() {
                                 </div>
                                 <div className="postedmaininfo">
                                     <div className="postedtitle">
-                                        접이식 빨래 건조대
+                                        두루마리 휴지
                                     </div>
                                     <div className="postedtitleinfo">
                                         <div className="postedfirst">
@@ -177,7 +177,7 @@ function Posted() {
                                             <Heart className="hearimg" /> 0
                                         </div>
                                     </div>
-                                    <div className="postedcost">15,000원</div>
+                                    <div className="postedcost">1,000원</div>
                                 </div>
 
                                 <div className="postedinfomation my-1">
@@ -195,7 +195,7 @@ function Posted() {
                                                 상품 상태 :
                                             </div>
                                             <div className="infomationtitleinfo">
-                                                사용감 적음
+                                                새상품
                                             </div>
                                         </div>
                                         <div className="availabledate">
@@ -219,9 +219,9 @@ function Posted() {
                                                 상품 설명 :
                                             </div>
                                             <div className="infomationtitleinfo">
-                                                건조대 새 거입니다! 쿠팡에서
-                                                샀는데 튼튼하고 기숙사 나가게
-                                                되어서 팔아요.
+                                                기숙사 들어오면서 산 휴지인데
+                                                너무 많아서 팔아요!
+                                                새제품입니다!!
                                             </div>
                                         </div>
                                     </div>

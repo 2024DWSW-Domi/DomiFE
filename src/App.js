@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Mainpage";
+import Main2 from "./pages/Mainpage2";
 import Login from "./pages/Login";
 import Posted from "./pages/Posted";
 import Posting from "./pages/Posting";
@@ -17,6 +18,7 @@ function App() {
                 <Routes>
                     <Route exact path="/" element={<LoadingScreen />} />
                     <Route exact path="/main" element={<Main />} />
+                    <Route exact path="/main2" element={<Main2 />} />
                     <Route exact path="/login" element={<Login />} />
                     <Route exact path="/posting" element={<Posting />} />
                     <Route exact path="/posted" element={<Posted />} />

@@ -23,7 +23,7 @@ function LoadingScreen() {
 
     useEffect(() => {
         if (!loading) {
-            navigate("/main"); // 로딩이 끝나면 main 페이지로 이동
+            navigate("/main2"); // 로딩이 끝나면 main 페이지로 이동
         }
     }, [loading, navigate]);
 
