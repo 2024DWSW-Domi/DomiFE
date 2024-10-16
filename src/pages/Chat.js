@@ -18,18 +18,12 @@ function Chat() {
         {
             type: "received",
             text: "결제가 완료되었어요! 제품을 수령하면 구매확정을 클릭해주세요:)",
-            time: "오전 11:05",
+            time: new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+            }),
             image: chatimg2,
-        },
-        {
-            type: "sent",
-            text: "안녕하세요! 잘 부탁드려요!",
-            time: "오전 11:56",
-        },
-        {
-            type: "received",
-            text: "거래해주셔서 감사해요 😊",
-            time: "오후 12:01",
         },
     ]);
 
@@ -92,7 +86,7 @@ function Chat() {
                                             className="backbtnimg"
                                         ></img>
                                     </div>
-                                    <div className="chatwho">까칠한 복단이</div>
+                                    <div className="chatwho">까칠한 도미</div>
                                     <div></div>
                                 </div>
 
