@@ -384,6 +384,38 @@ function Posting() {
 
                                 {/* 거래 가능 장소 추가 */}
                                 <div className="postedwhere">
+                                    <div className="posteddate">
+                                        <div className="posteddatetxt">
+                                            거래 희망 일자
+                                        </div>
+                                        <div className="posteddate">
+                                            <div className="posteddaysbuttons">
+                                                {days.map((day) => (
+                                                    <button
+                                                        key={day}
+                                                        onClick={() =>
+                                                            toggleDay(day)
+                                                        }
+                                                        style={{
+                                                            backgroundColor:
+                                                                selectedDays.includes(
+                                                                    day
+                                                                )
+                                                                    ? "#FFACAC"
+                                                                    : "white",
+                                                            border: selectedDays.includes(
+                                                                day
+                                                            )
+                                                                ? "1px solid #FFACAC"
+                                                                : "1px solid #ccc",
+                                                        }}
+                                                    >
+                                                        {day}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div className="postedwheretxt">
                                         거래 가능 장소
                                     </div>
