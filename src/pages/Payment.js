@@ -147,7 +147,7 @@ function Payment() {
                                                     className="flex flex-col items-center justify-center rounded-md border-2 border-muted bg-popover p-3 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                                                 >
                                                     <CreditCard className="mb-1 w-5 h-5" />
-                                                    도미 페이
+                                                    카드 결제
                                                 </Label>
                                             </div>
                                             <div>
