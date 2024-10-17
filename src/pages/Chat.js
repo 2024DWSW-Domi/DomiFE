@@ -60,7 +60,7 @@ function Chat() {
                 }),
             };
             setMessages((prevMessages) => [...prevMessages, autoReplyMessage]);
-        }, 40000); // 1분 = 60초 = 60000 밀리초
+        }, 20000); // 1분 = 60초 = 60000 밀리초
     };
 
     // 구매 확정 버튼 클릭 시 메시지 전송 함수 (handleSendMessage 바깥으로 이동)
